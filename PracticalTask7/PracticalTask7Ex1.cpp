@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <windows.h>
 
 //Практика 7, контрольное задание 1
 struct Time {
@@ -35,6 +36,8 @@ struct Time {
 };
 
 void TestTime() {
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
     Time time1;
     Time time2 = { 1, 30, 5 };
     time1.InputTime();
