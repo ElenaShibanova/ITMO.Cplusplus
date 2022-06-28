@@ -1,5 +1,6 @@
 #include <iostream> 
 #include <string> 
+#include <windows.h>
 
 //Практика 7, упражнение 1-3
 struct Distance
@@ -41,6 +42,8 @@ void ShowDist(Distance d)
     std::cout << d.feet << "\'-" << d.inches << "\"\n";
 }
 int TestDistance() {
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
     Distance d1 = InputDist();
     Distance d2 = { 1, 6.25 };
     Distance d3 = AddDist(d1, d2);
