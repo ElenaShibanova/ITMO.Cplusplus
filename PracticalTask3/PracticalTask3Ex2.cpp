@@ -5,10 +5,11 @@ double cubeRoot(double num) {
 }
 
 double cubeRootIteration(double num) {
-	double x = num;
-	for (int i = 0; i<10; i++ )
-		x = (num / (x * x) + 2 * x) / 3;
-	/*double num2 = (num / (num1 * num1) + 2 * num1) / 3;
-	double num3 = (num / (num2 * num2) + 2 * num2) / 3;*/
-	return x;
+	double x1 = 0;
+	double x2 = num;
+	while (abs(x1 - x2) > 0.000001) {
+		x1 = x2;
+		x2 = (num / (x1 * x1) + 2 * x1) / 3;
+	}
+	return x2;
 }
