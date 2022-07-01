@@ -23,7 +23,8 @@ public:
 
     }
         
-    std::string ShowTime(std::string timeString) const {
+    std::string ShowTime() const {
+        std::string timeString;
         timeString.append(std::to_string(hours / 10));
         timeString.append(std::to_string(hours % 10));
         timeString.append(":");
@@ -60,17 +61,17 @@ int main()
 {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
-    Time time1(2, 70, 63);
+    Time time1(3, 80, 67);
     Time time2 (1, 30, 5);
     Time sumTime;
     sumTime = time1.PlusTime(time2);
-    std::string t1, t2, t3;
+  
     /*time1.ShowTime(t1);
     time2.ShowTime(t2);    
     sumTime.ShowTime(t3);*/
 
-   std::cout << time1.ShowTime(t1)<<std::endl;
-   std::cout << time2.ShowTime(t2) << std::endl;
-   std::cout << sumTime.ShowTime(t3) << std::endl;
+   std::cout << time1.ShowTime()<<std::endl;
+   std::cout << time2.ShowTime() << std::endl;
+   std::cout << sumTime.ShowTime() << std::endl;
 }
 
