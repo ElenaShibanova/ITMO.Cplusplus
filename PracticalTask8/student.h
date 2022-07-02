@@ -25,6 +25,15 @@ public:
 	void set_average_score(double);
 	// Получение среднего балла
 	double get_average_score();
+
+	class ExScore //класс исключений
+	{
+	public:
+		string origin; //для имени функции
+		int iValue; //для хранения ошибочного значения
+		ExScore(string, int);
+		
+	};
 private:
 	// Промежуточные оценки
 	int scores[5];

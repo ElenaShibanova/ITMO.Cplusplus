@@ -62,7 +62,7 @@ int main()
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
     Time time1(3, 80, 67);
-    Time time2 (1, 30, 5);
+    Time time2 (1, 67, 5);
     Time sumTime;
     sumTime = time1.PlusTime(time2);
   

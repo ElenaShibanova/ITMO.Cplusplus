@@ -1,10 +1,13 @@
 ﻿#include <iostream>
 #include <string>
+#include <windows.h>
 #include "student.h"
 using namespace std;
 
 int main()
-{   
+{
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
     string name;
     string last_name;
     int scores[5];
@@ -42,17 +45,25 @@ int main()
     //cout << "Average ball for " << student01.get_name() << " "
     //    << student01.get_last_name() << " is "
     //    << student01.get_average_score() << endl;
-
-    // Сохраняем промежуточные оценки в объект класса Student
-    student02->set_scores(scores);
-    // Считаем средний балл
-    double average_score = sum / 5.0;
-    // Сохраняем средний балл в объект класса Student
-    student02->set_average_score(average_score);
-    // Выводим данные по студенту
-    cout << "Average ball for " << student02->get_name() << " "
-        << student02->get_last_name() << " is "
-        << student02->get_average_score() << endl;
+    try
+    {
+        // Сохраняем промежуточные оценки в объект класса Student
+        student02->set_scores(scores);
+        // Считаем средний балл
+        double average_score = sum / 5.0;
+        // Сохраняем средний балл в объект класса Student
+        student02->set_average_score(average_score);
+        // Выводим данные по студенту
+        cout << "Average ball for " << student02->get_name() << " "
+            << student02->get_last_name() << " is "
+            << student02->get_average_score() << endl;
+    }
+    catch (Student::ExScore& ex)
+    {
+        cout << "\nОшибка инициализации " << ex.origin;
+        cout << "\nВведенное значение оценки " << ex.iValue <<
+            "является недопустимым\n";
+    }
     delete student02;
     return 0;
 }
