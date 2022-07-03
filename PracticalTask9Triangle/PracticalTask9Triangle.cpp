@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿//Практика 9, контрольное задание 1
+#include <iostream>
 #include <math.h>
 #include <string>
 #include <windows.h>

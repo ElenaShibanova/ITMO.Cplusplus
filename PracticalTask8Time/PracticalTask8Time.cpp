@@ -9,17 +9,17 @@ public:
         SetAll(0, 0, 0);
     }
 
-    Time(int hours, int minutes, int seconds){
-        int s = seconds % 60;
-        int m = (minutes + seconds / 60) % 60;
-        int h = hours + (minutes + seconds / 60) / 60;
-        SetAll(h, m, s);
+    Time(int hours, int minutes, int seconds){       
+
+        SetAll(hours, minutes, seconds);
     }
 
     void SetAll(int hours, int minutes, int seconds) {
-        this->hours = hours;
-        this->minutes = minutes;
-        this->seconds = seconds;
+        if (hours < 0 or minutes < 0 or seconds < 0)
+            throw ExNegativeNumber("Ошибка инициализации объекта Time. Введено отрицательное число.");
+        this->hours = hours + (minutes + seconds / 60) / 60;
+        this->minutes = (minutes + seconds / 60) % 60;;
+        this->seconds = seconds % 60;;
 
     }
         
@@ -50,28 +50,48 @@ public:
         summTime.seconds = addInSeconds % 60;
         return summTime;
     }
-
+    class ExNegativeNumber {
+    public:
+        std::string nameObject;
+        ExNegativeNumber(std::string nameObj) : nameObject(nameObj) {}
+    };
 private:
     int hours;
     int minutes;
     int seconds;
 };
+class ExNotNumber {
+public:
+    ExNotNumber() : message("Введён символ, не являющийся целым числом.") { }
+    void printMessage() const { std::cout << message << std::endl; }
+private:
+    std::string message;
+};
+
 
 int main()
 {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
-    Time time1(3, 80, 67);
-    Time time2 (1, 67, 5);
-    Time sumTime;
-    sumTime = time1.PlusTime(time2);
-  
-    /*time1.ShowTime(t1);
-    time2.ShowTime(t2);    
-    sumTime.ShowTime(t3);*/
-
-   std::cout << time1.ShowTime()<<std::endl;
-   std::cout << time2.ShowTime() << std::endl;
-   std::cout << sumTime.ShowTime() << std::endl;
+    int h, m, s;
+    try {
+        if (!(std::cin >> h >> m >> s))
+            throw ExNotNumber();
+        Time time1(h, m, s);
+        Time time2(-1, 67, 5);
+        Time sumTime;
+        sumTime = time1.PlusTime(time2);
+        std::cout << time1.ShowTime() << std::endl;
+        std::cout << time2.ShowTime() << std::endl;
+        std::cout << sumTime.ShowTime() << std::endl;
+    }
+    catch (Time::ExNegativeNumber &ex){
+        std::cout << ex.nameObject;
+    }
+    catch (ExNotNumber& ex)
+    {
+        ex.printMessage();
+    }
+    
 }
 
