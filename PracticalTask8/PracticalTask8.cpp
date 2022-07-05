@@ -2,6 +2,7 @@
 #include <string>
 #include <windows.h>
 #include "student.h"
+#include "IdCard.h"
 using namespace std;
 
 int main()
@@ -12,6 +13,8 @@ int main()
     string last_name;
     int scores[5];
 
+    IdCard idc(123, "Базовый");
+
     // Ввод имени с клавиатуры
     cout << "Name: ";
     getline(cin, name);
@@ -20,7 +23,7 @@ int main()
     getline(cin, last_name);
 
     //Student student01;
-    Student* student02 = new Student(name, last_name);
+    Student* student02 = new Student(name, last_name, &idc);
     
     // Сумма всех оценок
     int sum = 0;
@@ -57,6 +60,9 @@ int main()
         cout << "Average ball for " << student02->get_name() << " "
             << student02->get_last_name() << " is "
             << student02->get_average_score() << endl;
+        cout << "IdCard: " << student02->getIdCard().getNumber() << endl;
+        cout << "Category: " << student02->getIdCard().getCategory() << endl;
+
     }
     catch (Student::ExScore& ex)
     {

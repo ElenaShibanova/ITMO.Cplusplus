@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
+#include "IdCard.h"
 using namespace std;
 
 class Student
 {
 public:
 	// Конструктор класса Student
-	Student(string, string);
+	Student(string, string, IdCard*);
 	// Запись данных о студенте в файл
 	void save();
 	// Деструктор класса Student
@@ -26,6 +27,10 @@ public:
 	// Получение среднего балла
 	double get_average_score();
 
+	void setIdCard(IdCard* c);
+	IdCard getIdCard();
+
+
 	class ExScore //класс исключений
 	{
 	public:
@@ -43,5 +48,6 @@ private:
 	string name;
 	// Фамилия
 	string last_name;
+	IdCard* iCard;
 };
 

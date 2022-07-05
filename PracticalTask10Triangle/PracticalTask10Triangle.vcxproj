@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ca0a29ed-d160-444b-8ad8-71da62b0e090}</ProjectGuid>
-    <RootNamespace>PracticalTask8</RootNamespace>
+    <ProjectGuid>{998d9a22-b6b7-4b94-96a1-3586da2d6b10}</ProjectGuid>
+    <RootNamespace>PracticalTask10Triangle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,13 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="IdCard.cpp" />
-    <ClCompile Include="PracticalTask8.cpp" />
-    <ClCompile Include="student.cpp" />
+    <ClCompile Include="Dot.cpp" />
+    <ClCompile Include="PracticalTask10Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IdCard.h" />
-    <ClInclude Include="student.h" />
+    <ClInclude Include="Dot.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,10 +1,11 @@
 #include <string>
 #include <fstream>
 #include "student.h"// Конструктор Student
-Student::Student(string name, string last_name)
+Student::Student(string name, string last_name, IdCard* id)
 {
 	Student::set_name(name);
 	Student::set_last_name(last_name);
+	Student::setIdCard(id);
 }// Деструктор Student
 Student::~Student()
 {
@@ -58,8 +59,15 @@ void Student::set_average_score(double ball)
 double Student::get_average_score()
 {
 	return Student::average_score;
-}Student::ExScore::ExScore(string orig , int sc)
+}void Student::setIdCard(IdCard* c)
+{
+	iCard = c;
+}
+IdCard Student::getIdCard()
+{
+	return *iCard;
+}Student::ExScore::ExScore(string orig , int sc)
 {
 	origin = orig ; //строка с именем виновника ошибки
 	iValue = sc; //сохраненное неправильное значение 
-}
+}
