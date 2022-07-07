@@ -2,8 +2,11 @@
 #include <windows.h>
 #include <string>
 
-//Практика 8, контрольное задание 1
+//Практика 8, контрольное задание 1 
+//Практика 11, контрольное задание 1
 class Time {
+    friend Time operator+(const Time& , const double);
+    friend Time operator+(const double, const Time&);
 public:
     Time(){
         SetAll(0, 0, 0);
@@ -42,13 +45,34 @@ public:
         return hours * 3600 + minutes * 60 + seconds;
     }
 
-    Time PlusTime(const Time &time) const{
+    Time operator+(const Time &time) const{
         Time summTime;
         int addInSeconds = TimeToSeconds() + time.TimeToSeconds();
         summTime.hours = addInSeconds / 3600;
         summTime.minutes = (addInSeconds % 3600) / 60;
         summTime.seconds = addInSeconds % 60;
         return summTime;
+    }
+
+    Time operator-(const Time& time) const {
+        Time summTime;
+        int addInSeconds = TimeToSeconds() - time.TimeToSeconds();// Предполагаем, что вычитаемое значение меньше уменьшаемого
+        summTime.hours = addInSeconds / 3600;
+        summTime.minutes = (addInSeconds % 3600) / 60;
+        summTime.seconds = addInSeconds % 60;
+        return summTime;
+    }
+    bool operator<(const Time& time) const {
+        int timeInSeconds1 = TimeToSeconds();
+        int timeInSeconds2 = time.TimeToSeconds();
+        if (timeInSeconds1 < timeInSeconds2) return true;
+        return false;
+    }
+    bool operator>(const Time& time) const {
+        int timeInSeconds1 = TimeToSeconds();
+        int timeInSeconds2 = time.TimeToSeconds();
+        if (timeInSeconds1 > timeInSeconds2) return true;
+        return false;
     }
     class ExNegativeNumber {
     public:
@@ -60,6 +84,22 @@ private:
     int minutes;
     int seconds;
 };
+Time operator+(const Time& time1, const double time2) {
+    Time summTime;
+    int addInSeconds = time1.TimeToSeconds() + static_cast<int>(time2 * 3600);
+    summTime.hours = addInSeconds / 3600;
+    summTime.minutes = (addInSeconds % 3600) / 60;
+    summTime.seconds = addInSeconds % 60;
+    return summTime;
+}
+Time operator+(const double time1, const Time& time2) {
+    Time summTime;
+    int addInSeconds = time2.TimeToSeconds() + static_cast<int>(time1 * 3600);
+    summTime.hours = addInSeconds / 3600;
+    summTime.minutes = (addInSeconds % 3600) / 60;
+    summTime.seconds = addInSeconds % 60;
+    return summTime;
+}
 class ExNotNumber {
 public:
     ExNotNumber() : message("Введён символ, не являющийся целым числом.") { }
@@ -78,12 +118,22 @@ int main()
         if (!(std::cin >> h >> m >> s))
             throw ExNotNumber();
         Time time1(h, m, s);
-        Time time2(-1, 67, 5);
-        Time sumTime;
-        sumTime = time1.PlusTime(time2);
+        Time time2(1, 67, 5);
+        Time sumTime = time1 + time2;
+        Time minusTime = time1 - time2;
+        Time timePlusNumber = time1 + 1.5;
+        Time numberPlusTime = 2.3 + time2;
         std::cout << time1.ShowTime() << std::endl;
         std::cout << time2.ShowTime() << std::endl;
         std::cout << sumTime.ShowTime() << std::endl;
+        std::cout << minusTime.ShowTime() << std::endl;
+        std::cout << timePlusNumber.ShowTime() << std::endl;
+        std::cout << numberPlusTime.ShowTime() << std::endl;
+        if (time1 < time2) std::cout << "True" << std::endl;
+        else std::cout << "False" << std::endl;
+        if (time1 > time2) std::cout << "True" << std::endl;
+        else std::cout << "False" << std::endl;
+        
     }
     catch (Time::ExNegativeNumber &ex){
         std::cout << ex.nameObject;
