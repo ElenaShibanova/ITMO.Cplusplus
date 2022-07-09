@@ -93,12 +93,7 @@ Time operator+(const Time& time1, const double time2) {
     return summTime;
 }
 Time operator+(const double time1, const Time& time2) {
-    Time summTime;
-    int addInSeconds = time2.TimeToSeconds() + static_cast<int>(time1 * 3600);
-    summTime.hours = addInSeconds / 3600;
-    summTime.minutes = (addInSeconds % 3600) / 60;
-    summTime.seconds = addInSeconds % 60;
-    return summTime;
+    return time2 + time1;
 }
 class ExNotNumber {
 public:
