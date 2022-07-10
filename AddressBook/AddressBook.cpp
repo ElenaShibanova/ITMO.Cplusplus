@@ -118,9 +118,9 @@ int main()
         cin >> choice;
         n++;
     } while (choice == 'y');
-    for (int j = 0; j < n; j++) //цикл по всем объектам
+    for (int j = 0; j < n; j++) //Вывод, цикл по всем объектам
         ShowInfo(person[j]);
-    /*delete[] discipline;
-    delete[] person;*/
+    for (int j = 0; j < n; j++) //Освобождение памяти, цикл по всем объектам
+        delete person[j];
     return 0;
 }
