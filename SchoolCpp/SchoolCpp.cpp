@@ -1,10 +1,14 @@
-﻿#include <iostream>
+﻿// Практика 12; практика 13, контрольное задание
+#include <iostream>
 #include <vector>
 #include <windows.h>
 #include "human.h"
 #include "student.h"
 #include "teacher.h"
 
+void ShowInfo(const human* hum) {
+	std::cout << hum->get_info() << std::endl;
+}
 int main()
 {
 	SetConsoleOutputCP(1251);
@@ -22,11 +26,9 @@ int main()
 	scores.push_back(3);
 	scores.push_back(3);
 	student* stud = new student("Петров", "Иван", "Алексеевич", scores);
-	std::cout << stud->get_info() << std::endl;
-
+	ShowInfo(stud);
 	unsigned int teacher_work_time = 40;
 	teacher* tch = new teacher("Сергеев", "Дмитрий", "Сергеевич", teacher_work_time);
-	std::cout << tch->get_info() << std::endl;
-
+	ShowInfo(tch);
 	return 0;
 }

@@ -10,14 +10,14 @@ public:
 		human(last_name, name, second_name) {
 		this->scores = scores;
 	}
-	std::string get_info()
+	std::string get_info() const
 	{
 		std::ostringstream full_name;
 		full_name << human::get_info() << "\nСредний балл : " <<  get_average_score();
 		return full_name.str();		
 	}
 	// Получение среднего балла студента
-		float get_average_score()
+		float get_average_score() const
 	{
 		// Общее количество оценок
 		unsigned int count_scores = this->scores.size();

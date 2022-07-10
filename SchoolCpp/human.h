@@ -11,7 +11,7 @@ public:
 		this->second_name = second_name;
 	}
 	// Получение ФИО человека
-	virtual std::string get_info()
+	virtual std::string get_info() const
 	{
 		std::ostringstream full_name;
 		full_name << this->last_name << " "
