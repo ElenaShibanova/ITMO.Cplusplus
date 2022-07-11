@@ -7,49 +7,44 @@
 
 using namespace std;
 
-class Triangle {
+class Triangle {//агрегация
 public:
-    Triangle(Dot* a, Dot* b) : a{ a }, b{ b } //треугольник с вершиной в начале координат.
+     Triangle(Dot* a, Dot* b, Dot* c) : a{ a }, b{ b }, c{ c }
     {
-        c00 = Dot();//композиция
-        //c = new Dot(0,0);
-        ab = a->distanceTo(*b);
-        bc = b->distanceTo(c00);
-        ac = a->distanceTo(c00);
-        if (IsNotTriangle(ab, bc, ac))
-            throw Triangle::ExNotTriangle("объекта Triangle.");
-
     }
-    Triangle(Dot* a, Dot* b, Dot* c) : a{ a }, b{ b }, c{ c }//агрегация
-    {
-        ab = a->distanceTo(*b);
-        bc = b->distanceTo(*c);
-        ac = a->distanceTo(*c);
-        if (IsNotTriangle(ab, bc, ac))
-            throw Triangle::ExNotTriangle("объекта Triangle.");
-    }
- /*   ~Triangle(){
-        delete c;
-    }*/
      double get_ab() {
-        return ab;
+        return a->distanceTo(*b);
     }
     double get_bc() {
-        return bc;
+        return  b->distanceTo(*c);
     }
     double get_ac() {
-        return ac;
+        return a->distanceTo(*c);
     }
-    boolean IsNotTriangle(double ab, double bc, double ac) {       
+    boolean IsNotTriangle(double ab, double bc, double ac) {
         if (ac >= ab + bc or ab >= bc + ac or bc >= ab + ac) return true;
         return false;
     }
 
     double TrianglePerimeter() {
+        double ab;
+        double bc;
+        double ac;
+        ab = a->distanceTo(*b);
+        bc = b->distanceTo(*c);
+        ac = a->distanceTo(*c);
+        if (IsNotTriangle(ab, bc, ac))
+            throw Triangle::ExNotTriangle("объекта Triangle.");
         return ab + bc + ac;
     }
 
     double TriangleArea() {
+        double ab;
+        double bc;
+        double ac;
+        ab = a->distanceTo(*b);
+        bc = b->distanceTo(*c);
+        ac = a->distanceTo(*c);
         double p = TrianglePerimeter()/ 2;
         return sqrt(p * (p - ab) * (p - bc) * (p - ac));
     }
@@ -62,11 +57,61 @@ private:
     Dot* a;
     Dot* b;
     Dot* c;
-    Dot c00;
-    double ab;
-    double bc;
-    double ac;
 };
+
+//class Triangle {//композиция
+//public:
+//    Triangle(Dot a, Dot b, Dot c) : a{ a }, b{ b }, c{c}
+//    { }
+//
+//    double get_ab() {
+//        return a.distanceTo(b);
+//    }
+//    double get_bc() {
+//        return b.distanceTo(c);
+//    }
+//    double get_ac() {
+//        return a.distanceTo(c);
+//    }
+//    boolean IsNotTriangle(double ab, double bc, double ac) {
+//        if (ac >= ab + bc or ab >= bc + ac or bc >= ab + ac) return true;
+//        return false;
+//    }
+//
+//    double TrianglePerimeter() {
+//        double ab;
+//        double bc;
+//        double ac;
+//        ab = a.distanceTo(b);
+//        bc = b.distanceTo(c);
+//        ac = a.distanceTo(c);
+//        if (IsNotTriangle(ab, bc, ac))
+//            throw Triangle::ExNotTriangle("объекта Triangle.");
+//        return ab + bc + ac;
+//    }
+//
+//    double TriangleArea() {
+//        double ab;
+//        double bc;
+//        double ac;
+//        ab = a.distanceTo(b);
+//        bc = b.distanceTo(c);
+//        ac = a.distanceTo(c);
+//        if (IsNotTriangle(ab, bc, ac))
+//            throw Triangle::ExNotTriangle("объекта Triangle.");
+//        double p = TrianglePerimeter() / 2;
+//        return sqrt(p * (p - ab) * (p - bc) * (p - ac));
+//    }
+//    class ExNotTriangle {
+//    public:
+//        string nameObject;
+//        ExNotTriangle(string nameObj) :nameObject(nameObj) {}
+//    };
+//private:
+//    Dot a;
+//    Dot b;
+//    Dot c;
+// };
 
 int main()
 {
@@ -79,15 +124,16 @@ int main()
     Dot b(bx, by);
     Dot c(cx, cy);
     try {
-        Triangle triangleOrigin(&a, &b);//треугольник с вершиной в начале координат.
-        cout <<"АВ = "<< triangleOrigin.get_ab() << " ВC = " << triangleOrigin.get_bc() << " AC = "<< triangleOrigin.get_ac() << endl;
-        cout << "Периметр треугольника " << triangleOrigin.TrianglePerimeter() << endl;
-        cout << "Площадь треугольника " << triangleOrigin.TriangleArea() << endl;
-
-        Triangle triangle(&a, &b, &c);
+    
+        Triangle triangle(&a, &b, &c);//агрегация
         cout << "АВ = " << triangle.get_ab() << " ВC = " << triangle.get_bc() << " AC = " << triangle.get_ac() << endl;
         cout << "Периметр треугольника " << triangle.TrianglePerimeter() << endl;
         cout << "Площадь треугольника " << triangle.TriangleArea() << endl;
+
+        /*Triangle triangle(a, b, c);//композиция
+         cout <<"АВ = "<< triangle.get_ab() << " ВC = " << triangle.get_bc() << " AC = "<< triangle.get_ac() << endl;
+         cout << "Периметр треугольника " << triangle.TrianglePerimeter() << endl;
+         cout << "Площадь треугольника " << triangle.TriangleArea() << endl;*/
     }
     catch (Triangle::ExNotTriangle& ex)
     {
