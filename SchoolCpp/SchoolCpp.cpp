@@ -7,7 +7,7 @@
 #include "teacher.h"
 
 void ShowInfo(const human* hum) {
-	std::cout << hum->get_info() << std::endl;
+	std::cout << hum->get_info() << "\n----------------- " << std::endl;
 }
 int main()
 {
@@ -25,10 +25,17 @@ int main()
 	scores.push_back(3);
 	scores.push_back(3);
 	scores.push_back(3);
+	human* hum1 = new human("Иванов", "Иван", "Алексеевич");
+	ShowInfo(hum1);
 	student* stud = new student("Петров", "Иван", "Алексеевич", scores);
-	ShowInfo(stud);
+	hum1 = stud;
+	ShowInfo(hum1);
 	unsigned int teacher_work_time = 40;
 	teacher* tch = new teacher("Сергеев", "Дмитрий", "Сергеевич", teacher_work_time);
-	ShowInfo(tch);
+	hum1 = tch;
+	ShowInfo(hum1);
+	delete hum1;
+	delete stud;
+	delete tch;
 	return 0;
 }
