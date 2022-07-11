@@ -6,9 +6,9 @@
 #include "student.h"
 #include "teacher.h"
 
-void ShowInfo(const human* hum) {
-	std::cout << hum->get_info() << "\n----------------- " << std::endl;
-}
+//void ShowInfo(const human* hum) {
+//	std::cout << hum->get_info() << "\n----------------- " << std::endl;
+//}
 int main()
 {
 	SetConsoleOutputCP(1251);
@@ -26,14 +26,14 @@ int main()
 	scores.push_back(3);
 	scores.push_back(3);
 	human* hum1 = new human("Иванов", "Иван", "Алексеевич");
-	ShowInfo(hum1);
+	std::cout << hum1->get_info() << "\n----------------- " << std::endl;
 	student* stud = new student("Петров", "Иван", "Алексеевич", scores);
 	hum1 = stud;
-	ShowInfo(hum1);
+	std::cout << hum1->get_info() << "\n----------------- " << std::endl;
 	unsigned int teacher_work_time = 40;
 	teacher* tch = new teacher("Сергеев", "Дмитрий", "Сергеевич", teacher_work_time);
 	hum1 = tch;
-	ShowInfo(hum1);
+	std::cout << hum1->get_info() << "\n----------------- " << std::endl;
 	delete hum1;
 	delete stud;
 	delete tch;
