@@ -6,9 +6,9 @@
 #include "student.h"
 #include "teacher.h"
 
-void ShowInfo(const human* hum) {
-	std::cout << hum->get_info() << "\n----------------- " << std::endl;
-}
+//void ShowInfo(const human* hum) {
+//	std::cout << hum->get_info() << "\n----------------- " << std::endl;
+//}
 int main()
 {
 	SetConsoleOutputCP(1251);
