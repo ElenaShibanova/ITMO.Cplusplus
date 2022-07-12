@@ -37,9 +37,15 @@ public:
         fracfeet += static_cast<float>(feet);
         return fracfeet / MTF;
     }
-
+    Distance& operator=(const Distance&);
     Distance operator+ (const Distance&) const;
 };
+
+Distance& Distance::operator=(const Distance& d2) {//перегрузка оператора присванивания, тест задание 2
+    feet = d2.feet;
+    inches = d2.inches;
+    return *this;
+}
 
 Distance Distance::operator+ (const Distance& d2) const
 {
@@ -75,19 +81,15 @@ ostream& operator<< (ostream& out, const Distance& dist)
 }
 
 
-
 int main()
 {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
-   // Distance dist1, dist2, dist3, dist4, dist5;
+    Distance dist2, dist3, dist4, dist5;
     Distance dist1 = 2.35F;
     float mtrs; 
     mtrs = static_cast<float>(dist1);
     mtrs = dist1;
-    cout << "\ndist1 = " << dist1;
-    //cout << "\ndist2 = " << dist2;
-   /* dist1.getdist();
     dist2.getdist();
     dist3 = dist1 + dist2;
     dist4 = dist1 + dist2 + dist3;
@@ -96,5 +98,5 @@ int main()
     cout << "\ndist2 = " << dist2;
     cout << "\ndist3 = " << dist3;
     cout << "\ndist4 = " << dist4;
-    cout << "\ndist5 = " << dist5;*/
+    cout << "\ndist5 = " << dist5;
 }
